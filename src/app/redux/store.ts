@@ -1,11 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
-import { JsonPlaceholderApi } from "./services/apiService";
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
+import { jsonPlaceholderApi } from './services/apiService'
 
 export const store = configureStore({
-  reducer: { [JsonPlaceholderApi.reducerPath]: JsonPlaceholderApi.reducer },
+  reducer: {
+    [jsonPlaceholderApi.reducerPath]: jsonPlaceholderApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(JsonPlaceholderApi.middleware),
-});
+    getDefaultMiddleware().concat(jsonPlaceholderApi.middleware),
+})
 
-setupListeners(store.dispatch);
+setupListeners(store.dispatch)

@@ -1,11 +1,29 @@
-import styles from "./page.module.css";
-import { useGetJsonByIdQuery } from "./redux/services/apiService";
+"use client";
+import React from "react";
+import { useGetAllJsonQuery } from "./redux/services/apiService";
+import "./globals.css";
 
-export default function Home() {
-  const { data } = useGetJsonByIdQuery(1);
+function page() {
+  const { data } = useGetAllJsonQuery();
   return (
-    <main className={styles.main}>
-      <h1>{data?.title}</h1>
-    </main>
+    <div>
+      {data?.map((userData) => (
+        <section className="user-box" key={userData.id}>
+          <span>
+            <p></p>
+            <p>User ID: {userData.userId}</p>
+            <p>ID:{userData.id}</p>
+            <p>Title:{userData.title}</p>
+            <p>Completed:{userData.completed ? "Yes" : "No"}</p>
+          </span>
+          <div>
+            <button>editar</button>
+            <button>eliminar</button>
+          </div>
+        </section>
+      ))}
+    </div>
   );
 }
+
+export default page;
